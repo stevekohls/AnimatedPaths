@@ -97,6 +97,8 @@
 //    drawingAnimation.delegate = self;
 //    [self.drawingLayer addAnimation:drawingAnimation forKey:@"strokeEnd"];
 
+    // This is almost identical to the code in one of my apps
+    // Demonstrates the same iOS 7 bug as displayed with the CAKeyframeAnimation code above.
     CABasicAnimation *drawingAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
     drawingAnimation.beginTime = CACurrentMediaTime();
     drawingAnimation.duration = 10.0f;

@@ -88,15 +88,26 @@
 //    drawingAnimation.toValue = [NSNumber numberWithFloat:1.0f];
 //    [self.drawingLayer addAnimation:drawingAnimation forKey:@"strokeEnd"];
 
-    CAKeyframeAnimation *drawingAnimation = [CAKeyframeAnimation animationWithKeyPath:@"strokeEnd"];
+//    CAKeyframeAnimation *drawingAnimation = [CAKeyframeAnimation animationWithKeyPath:@"strokeEnd"];
+//    drawingAnimation.beginTime = CACurrentMediaTime();
+//    drawingAnimation.duration = 10.0f;
+//    drawingAnimation.calculationMode = kCAAnimationPaced;
+//    drawingAnimation.values = @[@(0.0f), @(1.0f)];
+//    drawingAnimation.removedOnCompletion = YES;
+//    drawingAnimation.delegate = self;
+//    [self.drawingLayer addAnimation:drawingAnimation forKey:@"strokeEnd"];
+
+    CABasicAnimation *drawingAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
     drawingAnimation.beginTime = CACurrentMediaTime();
     drawingAnimation.duration = 10.0f;
-    drawingAnimation.calculationMode = kCAAnimationPaced;
-    drawingAnimation.values = @[@(0.0f), @(1.0f)];
+    drawingAnimation.timingFunction = [CAMediaTimingFunction functionWithName: kCAMediaTimingFunctionLinear];
+    drawingAnimation.fromValue = [NSNumber numberWithFloat:0.0f];
+    drawingAnimation.toValue = [NSNumber numberWithFloat:1.0f];
+    drawingAnimation.fillMode = kCAFillModeForwards;
     drawingAnimation.removedOnCompletion = YES;
     drawingAnimation.delegate = self;
     [self.drawingLayer addAnimation:drawingAnimation forKey:@"strokeEnd"];
-    
+
     CAKeyframeAnimation *pencilAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
     pencilAnimation.path = self.drawingLayer.path;
     pencilAnimation.beginTime = drawingAnimation.beginTime;
